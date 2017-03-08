@@ -1,5 +1,11 @@
 Revision history for YAML-Tiny
 
+1.70    2017-01-22 08:59:54Z
+
+        [FIXED]
+
+        - Some errors writing to a file were incorrectly reported.
+
 1.69    2015-07-26 00:51:03Z
         - No changes since 1.68-TRIAL.
 
