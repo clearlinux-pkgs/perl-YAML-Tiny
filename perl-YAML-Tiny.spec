@@ -4,7 +4,7 @@
 #
 Name     : perl-YAML-Tiny
 Version  : 1.70
-Release  : 19
+Release  : 20
 URL      : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/YAML-Tiny-1.70.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/YAML-Tiny-1.70.tar.gz
 Summary  : 'Read/Write YAML files with as little code as possible'
