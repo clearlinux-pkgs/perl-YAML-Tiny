@@ -4,13 +4,14 @@
 #
 Name     : perl-YAML-Tiny
 Version  : 1.73
-Release  : 34
+Release  : 35
 URL      : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/YAML-Tiny-1.73.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/YAML-Tiny-1.73.tar.gz
 Summary  : 'Read/Write YAML files with as little code as possible'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-YAML-Tiny-license = %{version}-%{release}
+Requires: perl-YAML-Tiny-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 
 %description
@@ -22,6 +23,7 @@ Read/Write YAML files with as little code as possible
 Summary: dev components for the perl-YAML-Tiny package.
 Group: Development
 Provides: perl-YAML-Tiny-devel = %{version}-%{release}
+Requires: perl-YAML-Tiny = %{version}-%{release}
 
 %description dev
 dev components for the perl-YAML-Tiny package.
@@ -35,14 +37,24 @@ Group: Default
 license components for the perl-YAML-Tiny package.
 
 
+%package perl
+Summary: perl components for the perl-YAML-Tiny package.
+Group: Default
+Requires: perl-YAML-Tiny = %{version}-%{release}
+
+%description perl
+perl components for the perl-YAML-Tiny package.
+
+
 %prep
 %setup -q -n YAML-Tiny-1.73
+cd %{_builddir}/YAML-Tiny-1.73
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -52,7 +64,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -61,7 +73,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-YAML-Tiny
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-YAML-Tiny/LICENSE
+cp %{_builddir}/YAML-Tiny-1.73/LICENSE %{buildroot}/usr/share/package-licenses/perl-YAML-Tiny/b768ef63d60a77d5a05a71fb19b6b1d2805ad944
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -74,7 +86,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/YAML/Tiny.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -82,4 +93,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-YAML-Tiny/LICENSE
+/usr/share/package-licenses/perl-YAML-Tiny/b768ef63d60a77d5a05a71fb19b6b1d2805ad944
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/YAML/Tiny.pm
