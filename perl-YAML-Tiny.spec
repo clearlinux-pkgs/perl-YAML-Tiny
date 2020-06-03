@@ -4,7 +4,7 @@
 #
 Name     : perl-YAML-Tiny
 Version  : 1.73
-Release  : 36
+Release  : 37
 URL      : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/YAML-Tiny-1.73.tar.gz
 Source0  : http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/YAML-Tiny-1.73.tar.gz
 Summary  : 'Read/Write YAML files with as little code as possible'
@@ -97,4 +97,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/YAML/Tiny.pm
+/usr/lib/perl5/vendor_perl/5.30.3/YAML/Tiny.pm
